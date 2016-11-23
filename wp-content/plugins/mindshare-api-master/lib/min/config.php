@@ -1,0 +1,1 @@
+<?php require_once("/Users/James/Dropbox/Sites/jwj_loveradicals/wp-content/plugins/mindshare-api-master/lib/minify-config.php"); ?>
