@@ -20,7 +20,7 @@ endif;
 $form_options = array(
   	'id'           => 'user-form',
   	'post_id'      => 'user_'.get_current_user_id(),
-  	'field_groups' => array(133),
+  	'field_groups' => array(45),
   	'submit_value' => __("Update My Info", 'acf'),
     'updated_message' => __("Information updated", 'acf'),
 );
