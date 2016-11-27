@@ -17,7 +17,7 @@ $story_form = array(
 ?>
 
 	<main role="main container-fluid">
-		<?php get_template_part('post-header'); ?>
+		<?php get_template_part('/inc/post-header'); ?>
 
 	<!-- section -->
 	<section>
