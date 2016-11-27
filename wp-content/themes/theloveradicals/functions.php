@@ -421,7 +421,7 @@ function love_pre_save_story( $post_id ) {
 
 add_filter('acf/pre_save_post' , 'love_pre_save_user', 1);
 function love_pre_save_user( $post_id) {
-  if ( $post_id != get_current_user_id() ) {return $post_id;};
+  if ( $post_id != get_current_user_id() && $post_id != 'new_post') {return $post_id;};
     $user_info = array(
       'first_name' => $_POST['acf']['field_583a2c15c4582'],
       'last_name' => $_POST['acf']['field_583a4c53624d2'],

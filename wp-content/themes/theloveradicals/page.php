@@ -1,45 +1,59 @@
 <?php get_header(); ?>
 
-	<main role="main">
-		<!-- section -->
-		<section>
+	<main role="main container-fluid">
+		<?php get_template_part('/inc/post-header'); ?>
+	<!-- section -->
+	<section>
 
-			<h1><?php the_title(); ?></h1>
+	<?php if (have_posts()): while (have_posts()) : the_post();
+	$image_url = the_post_thumbnail_url();
+	?>
+		<!-- article -->
+		<article id="post-<?php the_ID(); ?>" <?php post_class('story row'); ?>>
+			<!-- post thumbnail -->
+			<?php
 
-		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+			if ($image_url) : // Check if Thumbnail exists ?>
+				<div class="single_thumb fade-scroll ">
+					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+						<?php
+						$image_args = array(
+							'src' => $image_url,
+							'w'   => 300,
+							'h'   => 300,
+						);
+						?>
+						<img src="<?php echo mapi_thumb($image_args); ?>" alt="<?php the_title(); ?>">
+					</a>
+				</div>
 
-			<!-- article -->
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<?php endif; ?>
+			<!-- /post thumbnail -->
+			<div class=" col-md-12 page">
+				<!-- post title -->
+				<div class="col-md-8 col-md-offset-2 row">
+					<div class="post_info">
+						<h1><?php the_title() ?></h1>
+					</div>
+				</div>
+				<!-- /post title -->
 
+				<section class="col-md-8 col-md-offset-2 row">
 				<?php the_content(); ?>
+				</section>
 
-				<?php comments_template( '', true ); // Remove if you don't want comments ?>
+			</div>
 
-				<br class="clear">
+		</article>
+		<!-- /article -->
+		<footer class="single_footer row">
 
-				<?php edit_post_link(); ?>
+		</footer>
 
-			</article>
-			<!-- /article -->
+	<?php endwhile; endif; ?>
 
-		<?php endwhile; ?>
-
-		<?php else: ?>
-
-			<!-- article -->
-			<article>
-
-				<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
-
-			</article>
-			<!-- /article -->
-
-		<?php endif; ?>
-
-		</section>
-		<!-- /section -->
+	</section>
+	<!-- /section -->
 	</main>
-
-<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>
