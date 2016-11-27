@@ -2,7 +2,7 @@
   <div class="featured-images">
     <?php love_imageshowcase(); ?>
   </div>
-  <?php get_template_part('navigation'); ?>
+
 
 <div class="branding">
   <h1>

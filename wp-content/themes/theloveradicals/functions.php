@@ -32,24 +32,10 @@ if (function_exists('add_theme_support'))
     add_image_size('small', 120, '', true); // Small Thumbnail
     add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
-    // Add Support for Custom Backgrounds - Uncomment below if you're going to use
-    /*add_theme_support('custom-background', array(
-	'default-color' => 'FFF',
-	'default-image' => get_template_directory_uri() . '/img/bg.jpg'
-    ));*/
+    // Remove Admin bypostauthor
+    show_admin_bar(false);
 
-    // Add Support for Custom Header - Uncomment below if you're going to use
-    /*add_theme_support('custom-header', array(
-	'default-image'			=> get_template_directory_uri() . '/img/headers/default.jpg',
-	'header-text'			=> false,
-	'default-text-color'		=> '000',
-	'width'				=> 1000,
-	'height'			=> 198,
-	'random-default'		=> false,
-	'wp-head-callback'		=> $wphead_cb,
-	'admin-head-callback'		=> $adminhead_cb,
-	'admin-preview-callback'	=> $adminpreview_cb
-    ));*/
+
 
     // Enables post and comment RSS feed links to head
     add_theme_support('automatic-feed-links');
@@ -105,7 +91,7 @@ function html5blank_styles()
     wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
     wp_enqueue_style('html5blank'); // Enqueue it!
 
-    wp_register_style('fontawesome', 'https://use.fontawesome.com/812f7dc41d.js', array(), '1.0.0'); // Custom scripts
+    wp_register_style('fontawesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '1.0.0'); // Custom scripts
     wp_enqueue_style('fontawesome'); // Enqueue it!
 
     wp_register_style('source_fonts', 'https://fonts.googleapis.com/css?family=Source+Sans+Pro|Cardo:400i|Permanent+Marker|Merriweather:300', array(), '1.0.0'); // Custom scripts
@@ -282,35 +268,59 @@ function html5blankcomments($comment, $args, $depth)
 		$tag = 'li';
 		$add_below = 'div-comment';
 	}
+  if(empty( $args['has_children'] )) :
+    $classes = array('child');
+  else:
+    $classes = array('parent');
+  endif;
+
+  if($depth < 2) :
+    $classes[] = 'row';
+    $classes[] = 'comment-story';
+  else:
+
+  endif;
+
+
+//empty( $args['has_children'] ) ? '' : 'parent'
+
 ?>
     <!-- heads up: starting < for the html tag (li or div) in the next line: -->
-    <<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
-	<?php if ( 'div' != $args['style'] ) : ?>
-	<div id="div-comment-<?php comment_ID() ?>" class="comment-body">
-	<?php endif; ?>
-	<div class="comment-author vcard">
-	<?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['180'] ); ?>
-	<?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
-	</div>
-<?php if ($comment->comment_approved == '0') : ?>
-	<em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
-	<br />
-<?php endif; ?>
+    <<?php echo $tag ?> <?php comment_class($classes); ?> id="comment-<?php comment_ID() ?>">
 
-	<div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
-		<?php
-			printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'),'  ','' );
-		?>
-	</div>
+  <?php
 
-	<?php comment_text() ?>
+    if($depth > 1) :
+     $com_classes = 'reply comment-body col-md-12 row';
+    else:
+     $com_classes = 'comment-body col-md-12 row';
+    endif;
+  ?>
+    <div id="div-comment-<?php comment_ID() ?>" class="<?php echo $com_classes; ?>">
 
-	<div class="reply">
-	<?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-	</div>
-	<?php if ( 'div' != $args['style'] ) : ?>
-	</div>
-	<?php endif; ?>
+      <?php if ($comment->comment_approved == '0') : ?>
+      	<em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
+      	<br />
+      <?php endif; ?>
+      <div class="comment-author vcard col-md-2">
+      	<?php if ($args['avatar_size'] != 0) echo get_avatar( $comment ); ?>
+    	</div>
+      <div class="comment-meta commentmetadata col-md-10">
+        <div class="comment-author pull-left">
+          <?php printf(__('<cite class="fn">%s</cite>'), get_comment_author_link()) ?>
+        </div>
+        <div class="comment-date pull-right">
+          <?php printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?>
+        </div>
+
+      </div>
+      <div class="comment-text col-md-10">
+        <?php comment_text() ?>
+      </div>
+
+      <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'], 'before' => '<div class="pull-right">', 'after' => '</div>'))) ?>
+    </div>
+
 <?php }
 
 /*------------------------------------*\
@@ -385,6 +395,69 @@ if( have_rows('images', 'options') ):
      echo '</div>';
 endif;
 }
+
+
+add_filter('acf/pre_save_post' , 'love_pre_save_story', 1);
+function love_pre_save_story( $post_id ) {
+  if ( $post_id != 'new_post' ) {return $post_id;};
+    $post = array(
+        'post_status' => 'draft',
+        'post_title' => $_POST['acf']['field_583a062a7d688'],
+        'post_name' => $_POST['acf']['field_583a062a7d688'],
+        'post_content' => $_POST['acf']['field_583a05c87d685'],
+        'post_type' => 'post',
+        'post_category' => array('Story')
+    );
+    // insert the post
+    $post_id = wp_insert_post( $post );
+
+	   // update $_POST['return']
+    $_POST['return'] = add_query_arg( array('post_id' => $post_id), $_POST['return'] );
+
+    // return the new ID
+    return $post_id;
+}
+
+
+add_filter('acf/pre_save_post' , 'love_pre_save_user', 1);
+function love_pre_save_user( $post_id) {
+  if ( $post_id != get_current_user_id() ) {return $post_id;};
+    $user_info = array(
+      'first_name' => $_POST['acf']['field_583a2c15c4582'],
+      'last_name' => $_POST['acf']['field_583a4c53624d2'],
+      'description' => $_POST['acf']['field_583a2c31c4584'],
+      'user_email' => $_POST['acf']['field_583a2c27c4583'],
+      'user_pass' => $_POST['acf']['field_583a2c52c4586'],
+    );
+
+    // insert the post
+    $post_id = wp_update_user( $user_info );
+
+	   // update $_POST['return']
+    $_POST['return'] = add_query_arg( array('post_id' => $post_id), $_POST['return'] );
+
+    // return the new ID
+    return $post_id;
+}
+
+
+
+add_filter( 'posts_where', 'love_attachments_wpquery' );
+function love_attachments_wpquery( $where ){
+	global $current_user;
+
+	if( is_user_logged_in() ){
+		if( isset( $_POST['action'] ) ){
+			// library query
+			if( $_POST['action'] == 'query-attachments' ){
+				$where .= ' AND post_author='.$current_user->data->ID;
+			}
+		}
+	}
+
+	return $where;
+}
+
 
 if( function_exists('acf_add_options_page') ) {
 

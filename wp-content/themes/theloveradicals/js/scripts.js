@@ -44,10 +44,13 @@
 				$('.left-head').css('height', windowHeight);
         $('.featured-images').css('height', windowHeight);
         $('.slick-slider').css('height', windowHeight);
-				$('.single_thumb').css('height', windowHeight/2);
-				$('.story_post').css('margin-top', windowHeight/2);
 	  };
 	  setSize();
+
+		$(window).scroll(function(){
+		    $(".fade-scroll").css("opacity", 1 - $(window).scrollTop() / 250);
+		});
+
 
 	  $(window).resize(function() {
 	    setSize();
@@ -63,6 +66,8 @@
 
 		  });
 		});
+
+
 
 
 
