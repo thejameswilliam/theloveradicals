@@ -10,7 +10,7 @@ $story_form = array(
 	   'post_status'		=> 'draft',
   ),
   'id' => 'new-story',
-	'field_groups' => array(104),
+	'field_groups' => array(41),
 	'return' => '%post_url%',
 	'submit_value' => __("Submit Story", 'acf'),
 );
