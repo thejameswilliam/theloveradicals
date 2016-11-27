@@ -39,7 +39,29 @@
 				<!-- /post title -->
 
 				<section class="col-md-8 col-md-offset-2 row">
-				<?php the_content(); ?>
+				<?php if (current_user_can('manage_options')) : ?>
+					<ul  class="nav nav-tabs">
+							<li class="active"><a  href="#story" data-toggle="tab">Page Content</a></li>
+							<li><a href="#edit" data-toggle="tab">Edit Page</a></li>
+					</ul>
+
+					<div class="tab-content clearfix">
+							<div class="tab-pane active" id="story">
+								<?php the_content(); ?>
+							</div>
+							<div class="tab-pane" id="edit">
+								<?php
+								$form_options = array(
+									'updated_message' => false,
+									'post_content' => true,
+								);
+								acf_form($form_options); ?>
+							</div>
+					</div>
+				<?php else : ?>
+					<?php the_content(); ?>
+
+				<?php endif; ?>
 				</section>
 
 			</div>

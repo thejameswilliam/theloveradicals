@@ -33,7 +33,7 @@ if (function_exists('add_theme_support'))
     add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
     // Remove Admin bypostauthor
-    show_admin_bar(false);
+    //show_admin_bar(false);
 
 
 

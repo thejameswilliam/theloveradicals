@@ -2,6 +2,7 @@
 /* Template Name: User Account Page */
 acf_form_head();
 get_header();
+
 if(isset($_GET['updated'])) :
   $status = $_GET['updated'];
 else :

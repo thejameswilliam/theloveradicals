@@ -1,8 +1,11 @@
 <?php get_header(); ?>
 
-	<main role="main">
+
+	<main role="main container-fluid">
+		<?php get_template_part('/inc/post-header'); ?>
+
 		<!-- section -->
-		<section>
+		<section class="col-md-8 col-md-offset-2 row">
 
 			<h1><?php _e( 'Categories for ', 'html5blank' ); single_cat_title(); ?></h1>
 
@@ -13,7 +16,4 @@
 		</section>
 		<!-- /section -->
 	</main>
-
-<?php get_sidebar(); ?>
-
 <?php get_footer(); ?>
