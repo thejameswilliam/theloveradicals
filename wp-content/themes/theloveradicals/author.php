@@ -2,9 +2,6 @@
 
 <main role="main container-fluid">
 	<?php get_template_part('/inc/post-header'); ?>
-		<!-- section -->
-
-		<?php if (have_posts()): the_post();?>
 
 			<!-- article -->
 			<article id="post-<?php the_ID(); ?>" <?php post_class('story row'); ?>>
@@ -51,7 +48,7 @@
 							<?php endif; ?>
 						</div>
 
-						<?php if (have_posts()): while (have_posts()) : the_post();
+						<?php  while (have_posts()) : the_post();
 
 						if(get_field('featured_image')) :
 							$image_url = get_field('featured_image');
@@ -94,13 +91,11 @@
 
 
 								<!-- post thumbnail -->
-
 									<div class="post_thumb pull-right col-md-3">
 										<a href="<?php the_permalink(); ?>">
 											<img src="<?php echo mapi_thumb($image_args); ?>" alt="<?php the_field('story_title'); ?>">
 										</a>
 									</div>
-
 								<!-- /post thumbnail -->
 
 
@@ -131,22 +126,7 @@
 			</article>
 			<!-- /article -->
 
-
-
-		<?php else: ?>
-			<!-- article -->
-			<article>
-
-				<h2><?php _e( 'This author has not written any stories.', 'html5blank' ); ?></h2>
-
-			</article>
-			<!-- /article -->
-
-		<?php endif; ?>
-
 			<?php get_template_part('pagination'); ?>
 
-		</section>
-		<!-- /section -->
 	</main>
 <?php get_footer(); ?>
