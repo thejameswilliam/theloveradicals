@@ -12,7 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
-	color: rgb(60, 60, 60);
+  color:@dark;
 }
 .form-control:focus {
   border-color: inherit;
@@ -60,9 +60,8 @@ body {
 
 
 .left-head {
-  background: #000;
   overflow: hidden;
-  left: -70px;
+  left: -90px;
   position: fixed;
   -moz-transform: skewX(-10deg);
   -webkit-transform: skewX(-10deg);
@@ -112,7 +111,7 @@ body {
     transition: all 200ms ease-in-out;
     margin: 0;
     padding: 0;
-    color: #5d5d5d
+    color: @dark;
   }
   h1 {
     font-family: 'Permanent Marker',cursive;
@@ -122,7 +121,7 @@ body {
     font-size: 3em
   }
   h2 a {
-    color: #5d5d5d;
+    color: @dark;
     text-decoration: none
   }
   h2 a:hover {
@@ -130,17 +129,17 @@ body {
   }
   .author {
     font-family: 'Cardo',serif;
-    color: #5d5d5d;
+    color: @dark;
     font-style: italic
   }
   .date {
     font-family: 'Cardo',serif;
     font-style: italic;
-    color: #5d5d5d;
+    color: @dark;
     margin-bottom: 5px
   }
   .author a {
-    color: #5d5d5d
+    color: @dark;
   }
   .mapi-featured-img {
     -webkit-border-radius: 100px;
@@ -208,7 +207,7 @@ body {
 }
 a {
   text-decoration:none;
-  color: #3c3c3c;
+  color: @dark;
   -webkit-transition: all 200ms ease-in-out;
   -moz-transition: all 200ms ease-in-out;
   -ms-transition: all 200ms ease-in-out;
@@ -339,13 +338,15 @@ article.story {
   width: 100%;
   font-size: 1.2em;
   margin: 0;
-  color: #666;
+  background: #fff;
+  color: @dark;
   position: fixed;
   top: 0;
-  background: #fff;
   z-index: 100;
-
+  -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.7);
+  box-shadow: 0 0 5px 0 rgba(0,0,0,.7);
 }
+
 
 .right-tip {
   width: 0px;
@@ -456,7 +457,7 @@ article {
 		dd {
 			margin-left:   0;
 			font-size:     0.9em;
-			color:         #787878;
+			color:         @dark;
 			margin-bottom: 1.5em;
 		}
 
@@ -523,7 +524,7 @@ article {
 
 .comments {
   list-style: none;
-  padding: 0;
+  padding: 20px 0;
   .comment-body {
     padding: 10px 0;
   }
@@ -717,49 +718,54 @@ article {
 
 // Pagination
 
-.pagination.pagination-centered {
+.pagination {
 	text-align: center;
 	width:      100%;
+  .page-numbers {
+    padding: 3px 10px;
+    background: @dark;
+    color: #fff;
+    margin: 2px;
+    font-family: 'Source Sans Pro',sans-serif;
+    line-height: 12px;
+    font-weight: bold;
+  }
+  .page-numbers.current {
+    background: @red;
+  }
 }
 
 // Footer Styles
 
 footer, .footer {
 	clear:      both;
-	margin-top: @panel-body-padding;
+  float: left;
+    background: #f8f8f8;
+  .footer_widgets {
+    padding:20px 0;
+  }
 
-	.footer-nav {
 
-		li > a {
-			padding: 2px @padding-base-vertical;
-		}
-
-		@media (max-width: @grid-float-breakpoint) {
-
-			li {
-				float:      none;
-				width:      100%;
-				text-align: center;
-				padding:    5px 0;
-			}
-
-		}
-
-	}
 
 	.copyright, #credit {
-		color:          #CCCCCC;
-		text-transform: uppercase;
-		font-size:      10px;
-		margin:         20px 0;
-		line-height:    20px;
+      color: #CCCCCC;
+      background: @dark;
+      padding:10px 0;
+      text-align: center;
+      text-transform: uppercase;
+      font-size:      10px;
+      margin:         20px 0;
+      line-height:    20px;
+      a {
+        color: #CCCCCC;
+      }
 
-		@media (max-width: @grid-float-breakpoint) {
-			float:      none !important;
-			display:    block;
-			width:      100%;
-			text-align: center;
-		}
+      @media (max-width: @grid-float-breakpoint) {
+        float:      none !important;
+        display:    block;
+        width:      100%;
+        text-align: center;
+      }
 
 	}
 
@@ -880,7 +886,7 @@ span.gc-cs-link, a[href^="tel:"] {
 }
 
 .gallery-caption {
-	background-color:   rgba(0, 0, 0, 0.7);
+	background-color:   @dark;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing:    border-box;
 	box-sizing:         border-box;
@@ -926,7 +932,7 @@ span.gc-cs-link, a[href^="tel:"] {
 
 // MAPI specific stuff
 .mapi-featured-img {
-	background-color: #111111;
+	background-color: @dark;
 }
 
 .mapi-fb-posts {

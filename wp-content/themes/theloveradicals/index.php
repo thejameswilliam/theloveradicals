@@ -11,10 +11,11 @@
 			<?php get_template_part('/inc/loop'); ?>
 
 			<?php get_template_part('/inc/pagination'); ?>
-			<?php get_footer(); ?>
 		</section>
+
 		<!-- /section -->
 
 
 	</main>
+    <?php get_footer(); ?>
 </div>

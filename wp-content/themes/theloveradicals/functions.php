@@ -149,19 +149,39 @@ function add_slug_to_body_class($classes)
     return $classes;
 }
 
+
 // If Dynamic Sidebar Exists
 if (function_exists('register_sidebar'))
 {
-    // Define Sidebar Widget Area 1
+    // Define Footer Widget Area
     register_sidebar(array(
-        'name' => __('Widget Area 1', 'html5blank'),
-        'description' => __('Description for this widget-area...', 'html5blank'),
-        'id' => 'widget-area-1',
+        'name' => __('Column 1 Footer Widgets', 'html5blank'),
+        'description' => __('Widgets that appear in the footer of all pages', 'html5blank'),
+        'id' => 'widget-col-1',
         'before_widget' => '<div id="%1$s" class="%2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
     ));
+    register_sidebar(array(
+        'name' => __('Column 2 Footer Widgets', 'html5blank'),
+        'description' => __('Widgets that appear in the footer of all pages', 'html5blank'),
+        'id' => 'widget-col-2',
+        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>'
+    ));
+    register_sidebar(array(
+        'name' => __('Column 3 Footer Widgets', 'html5blank'),
+        'description' => __('Widgets that appear in the footer of all pages', 'html5blank'),
+        'id' => 'widget-col-3',
+        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>'
+    ));
+
 }
 
 // Remove wp_head() injected Recent Comment styles
@@ -183,38 +203,14 @@ function html5wp_pagination()
         'base' => str_replace($big, '%#%', get_pagenum_link($big)),
         'format' => '?paged=%#%',
         'current' => max(1, get_query_var('paged')),
-        'total' => $wp_query->max_num_pages
+        'total' => $wp_query->max_num_pages,
+        'prev_text' => __('Previous Page'),
+        'next_text' => __('Next Page'),
     ));
 }
 
-// Custom Excerpts
-function html5wp_index($length) // Create 20 Word Callback for Index page Excerpts, call using html5wp_excerpt('html5wp_index');
-{
-    return 20;
-}
 
-// Create 40 Word Callback for Custom Post Excerpts, call using html5wp_excerpt('html5wp_custom_post');
-function html5wp_custom_post($length)
-{
-    return 40;
-}
 
-// Create the Custom Excerpts callback
-function html5wp_excerpt($length_callback = '', $more_callback = '')
-{
-    global $post;
-    if (function_exists($length_callback)) {
-        add_filter('excerpt_length', $length_callback);
-    }
-    if (function_exists($more_callback)) {
-        add_filter('excerpt_more', $more_callback);
-    }
-    $output = get_the_excerpt();
-    $output = apply_filters('wptexturize', $output);
-    $output = apply_filters('convert_chars', $output);
-    $output = '<p>' . $output . '</p>';
-    echo $output;
-}
 
 // Custom View Article link to Post
 function html5_blank_view_article($more)
@@ -385,8 +381,8 @@ if( have_rows('images', 'options') ):
       $image_url = get_sub_field('image', 'options');
       $image_args = array(
         'src' => $image_url,
-        'w'   => 600,
-        'h'   => 900,
+        'w'   => 650,
+        'h'   => 1000,
         'q'   => 90,
       ); ?>
     <img src="<?php echo mapi_thumb($image_args); ?>">

@@ -41,9 +41,9 @@
 
 		function setSize() {
 	    var windowHeight = $(window).innerHeight();
-				$('.left-head').css('height', windowHeight);
-        $('.featured-images').css('height', windowHeight);
-        $('.slick-slider').css('height', windowHeight);
+            $('.left-head').css('height', windowHeight);
+            $('.featured-images').css('height', windowHeight);
+            $('.slick-slider').css('height', windowHeight);
 	  };
 	  setSize();
 
