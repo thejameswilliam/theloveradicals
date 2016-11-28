@@ -3,7 +3,7 @@
   <div class="single_title col-md-6">
     <a href="<?php echo site_url()?>">
       <i class="fa fa-home nav-icon" aria-hidden="true"></i>
-      <div class="right-tip">Site Home</div>
+      <div class="right-tip">Home</div>
     </a>
     <?php if(is_user_logged_in()) : ?>
     <a href="<?php echo site_url( '/account ')?>">
@@ -11,7 +11,7 @@
       <div class="right-tip">My Account</div>
     </a>
     <?php endif; ?>
-    <?php the_field('story_title'); ?>
+    <?php if(!is_home()) : the_field('story_title'); endif; ?>
   </div>
 
   <div class="single_navigation col-md-6">

@@ -1,61 +1,57 @@
 <?php get_header(); ?>
 
-	<main role="main">
+<main role="main container-fluid">
+	<?php get_template_part('/inc/post-header'); ?>
 		<!-- section -->
-		<section>
 
-		<?php if (have_posts()): the_post(); ?>
-
-			<h1><?php _e( 'Author Archives for ', 'html5blank' ); echo get_the_author(); ?></h1>
-
-		<?php if ( get_the_author_meta('description')) : ?>
-
-		<?php echo get_avatar(get_the_author_meta('user_email')); ?>
-
-			<h2><?php _e( 'About ', 'html5blank' ); echo get_the_author() ; ?></h2>
-
-			<?php echo wpautop( get_the_author_meta('description') ); ?>
-
-		<?php endif; ?>
-
-		<?php rewind_posts(); while (have_posts()) : the_post(); ?>
+		<?php if (have_posts()): the_post();
+			$image_url = get_field('featured_image');
+		?>
 
 			<!-- article -->
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<article id="post-<?php the_ID(); ?>" <?php post_class('story row'); ?>>
+				<div class=" col-md-12 story_post">
+					<div class="col-md-8 col-md-offset-2 row">
+						<div class="post_info">
+							<?php
+								$author_id = get_the_author_meta('ID');
+								$author_image = get_field('photo', 'user_'. $author_id );
+								$pen_name_option = get_field('under_pen_name', 'user_'. $author_id );
 
-				<!-- post thumbnail -->
-				<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
-					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-						<?php the_post_thumbnail(array(120,120)); // Declare pixel size you need inside the array ?>
-					</a>
-				<?php endif; ?>
-				<!-- /post thumbnail -->
+								if($pen_name_option == 'yes') :
+									$author_name = get_field('pen_name', 'user_'. $author_id );
+								else :
+									$author_name = get_the_author_meta('display_name', $author_id);
+								endif;
+							?>
+							<h1><?php echo 'Stories by ' . $author_name; ?></h1>
+						</div>
 
-				<!-- post title -->
-				<h2>
-					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-				</h2>
-				<!-- /Post title -->
+						<div class="col-md-12 row">
+							<?php if ( get_field('bio', 'user_'.$author_id)) :
+								$image_url = get_field('photo', 'user_'.$author_id);
+								$image_args = array(
+									'src' => $image_url,
+									'w'   => 300,
+									'h'   => 300,
+								);
+								?>
+								<div class="author_photo col-md-3">
+									<img src="<?php echo mapi_thumb($image_args); ?>" alt="<?php the_field('story_title'); ?>">
+								</div>
+								<div class="author_bio col-md-9">
+									<?php echo get_field('bio', 'user_'.$author_id); ?>\
+								</div>
+							<?php endif; ?>
+						</div>
 
-				<!-- post details -->
-				<span class="date"><?php the_time('F j, Y'); ?> <?php the_time('g:i a'); ?></span>
-				<span class="author"><?php _e( 'Published by', 'html5blank' ); ?> <?php the_author_posts_link(); ?></span>
-				<span class="comments"><?php comments_popup_link( __( 'Leave your thoughts', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></span>
-				<!-- /post details -->
+						<?php get_template_part('/inc/loop'); ?>
 
-				<?php html5wp_excerpt('html5wp_index'); // Build your custom callback length in functions.php ?>
-
-				<br class="clear">
-
-				<?php edit_post_link(); ?>
-
+					</div>
+				</div>
 			</article>
 			<!-- /article -->
-
-		<?php endwhile; ?>
-
 		<?php else: ?>
-
 			<!-- article -->
 			<article>
 

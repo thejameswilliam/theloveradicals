@@ -29,9 +29,7 @@ get_header();
 		<!-- article -->
 		<article id="post-<?php the_ID(); ?>" <?php post_class('story row'); ?>>
 			<!-- post thumbnail -->
-			<?php
-
-			if ($image_url) : // Check if Thumbnail exists ?>
+			<?php if ($image_url) : // Check if Thumbnail exists ?>
 				<div class="single_thumb fade-scroll ">
 
 					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
@@ -72,7 +70,7 @@ get_header();
 								echo '<a href="' . get_author_posts_url($author_id) . '">';
 								echo $author_name;
 								echo '</a>';
-								echo '</a> in ';
+								echo ' in ';
 								echo the_time('F');
 								?>
 						</div>

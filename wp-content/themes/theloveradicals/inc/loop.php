@@ -23,7 +23,7 @@ endif;
 ?>
 
 	<!-- article -->
-	<article id="post-<?php the_ID(); ?>" <?php post_class('story col-md-12 row'); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class('love_stories story col-md-10 col-md-offset-1 row'); ?>>
 		<div class="col-md-8 post_info">
 			<!-- post title -->
 			<span class="date"><?php the_time('F j, Y'); ?></span>
