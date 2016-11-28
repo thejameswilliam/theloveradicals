@@ -15,6 +15,7 @@ $image_args = array(
 	'w'              => 100,
 	'h'              => 100,
 );
+
 if($pen_name_option == 'true') :
 	$author_name = get_field('pen_name', 'user_'. $author_id );
 else :
