@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="tab-pane" id="login">
-      <?php gravity_form(1, $display_title = true, $display_description = true, $ajax = true, 100, $echo = true );
+      <?php gravity_form(1, $display_title = false, $display_description = false, $ajax = true, 100, $echo = true );
 ?>
     </div>
 </div>
