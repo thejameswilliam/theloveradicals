@@ -29,16 +29,16 @@
 
 			<?php endif; ?>
 			<!-- /post thumbnail -->
-			<div class=" col-md-12 page">
+			<div class=" col-md-12 col-xs-12 page">
 				<!-- post title -->
-				<div class="col-md-8 col-md-offset-2 row">
+				<div class="col-md-8 col-md-offset-2 col-xs-12 ">
 					<div class="post_info">
 						<h1><?php the_title() ?></h1>
 					</div>
 				</div>
 				<!-- /post title -->
 
-				<section class="col-md-8 col-md-offset-2 row">
+				<section class="col-md-8 col-md-offset-2 col-xs-12 ">
 
 					<?php the_content(); ?>
 
@@ -48,7 +48,7 @@
 
 		</article>
 		<!-- /article -->
-		<footer class="single_footer row">
+		<footer class="single_footer col-xs-12 col-md-12">
 
 		</footer>
 
