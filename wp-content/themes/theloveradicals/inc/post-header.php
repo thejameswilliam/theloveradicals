@@ -13,10 +13,10 @@
     <?php endif; ?>
     <?php if(!is_home()) : the_field('story_title'); endif; ?>
   </div>
-  <div class="menu_toggle pull-right collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+  <button type="button" class="navbar-toggle menu_toggle pull-right collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
     <span class="sr-only">Toggle navigation</span>
     <i class="fa fa-bars" aria-hidden="true"></i>
-  </div>
+  </button>
   <div role="navigation" id="navbar-collapse" class="single_navigation collapse pull-right navbar-collapse col-md-6 col-xs-6">
 
       <?php

@@ -67,7 +67,7 @@
 // Small styles - default: 480px <= x <= 991px
 @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
 	.left-head {
-		position: fixed;
+		position: relative;
 		img {
 			height: auto;
 			width: 100%;
@@ -83,7 +83,7 @@
 	}
 	.love_stories {
 		.post_info {
-		h2 {font-size: 4em;}
+		h2 {font-size: 1.2em;}
 		.date, .author {font-size: 1em;}
 		}
 	}
@@ -95,6 +95,11 @@
 		min-height: 250px;
 	}
 	.left-head {
+		position: fixed;
+		img {
+			height: auto;
+			width: 100%;
+		}
 		.branding {
 			h1 {
 				font-size: 4em;
