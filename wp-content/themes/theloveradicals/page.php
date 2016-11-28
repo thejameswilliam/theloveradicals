@@ -6,17 +6,18 @@
 	<section class="page col-md-12 col-xs-12">
 
 	<?php if (have_posts()): while (have_posts()) : the_post();
-	$image_url = the_post_thumbnail_url();
+
 	?>
 		<!-- article -->
 		<article id="post-<?php the_ID(); ?>" <?php post_class('story row'); ?>>
 			<!-- post thumbnail -->
 			<?php
-
+			$image_url = get_the_post_thumbnail_url();
 			if ($image_url) : // Check if Thumbnail exists ?>
 				<div class="single_thumb fade-scroll ">
 					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
 						<?php
+
 						$image_args = array(
 							'src' => $image_url,
 							'w'   => 300,
