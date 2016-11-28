@@ -20,7 +20,7 @@ get_header();
 		<?php get_template_part('/inc/post-header'); ?>
 
 	<!-- section -->
-	<section>
+	<section class="single-story col-md-12">
 
 	<?php if (have_posts()): while (have_posts()) : the_post();
 	$image_url = get_field('featured_image');
@@ -47,9 +47,9 @@ get_header();
 
 			<?php endif; ?>
 			<!-- /post thumbnail -->
-			<div class=" col-md-12 story_post">
+			<div class="col-md-12 story_post">
 				<!-- post title -->
-				<div class="col-md-8 col-md-offset-2 row">
+				<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
 					<div class="post_info">
 						<h1><?php the_field('story_title') ?></h1>
 						<?php
@@ -78,7 +78,7 @@ get_header();
 				</div>
 				<!-- /post title -->
 
-				<section class="col-md-8 col-md-offset-2 row">
+				<section class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
 					<? if($status == 'updated') : ?>
 						<div class="alert alert-success" role="alert">
 							<strong>Well done!</strong> You successfully updated your story.
@@ -115,7 +115,7 @@ get_header();
 		</article>
 		<!-- /article -->
 		<footer class="single_footer row">
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
 				<?php comments_template(); ?>
 			</div>
 		</footer>

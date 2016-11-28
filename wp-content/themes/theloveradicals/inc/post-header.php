@@ -1,6 +1,6 @@
 <div class="fade-scroll single_header col-md-12">
 
-  <div class="single_title col-md-6">
+  <div class="single_title col-md-6 col-xs-6">
     <a href="<?php echo site_url()?>">
       <i class="fa fa-home nav-icon" aria-hidden="true"></i>
       <div class="right-tip">Home</div>
@@ -14,7 +14,7 @@
     <?php if(!is_home()) : the_field('story_title'); endif; ?>
   </div>
 
-  <div class="single_navigation col-md-6">
+  <div class="single_navigation col-md-6 col-xs-6">
 
       <?php /* Primary navigation */
         wp_nav_menu( array(

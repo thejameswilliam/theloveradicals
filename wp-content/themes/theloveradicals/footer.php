@@ -3,8 +3,8 @@
 
 				<!-- copyright -->
 				<p class="copyright">
-					&copy; <?php echo date('Y'); ?> Copyright <?php bloginfo('name'); ?>. <?php _e('Powered by', 'html5blank'); ?>
-					<a href="//wordpress.org" title="WordPress">WordPress</a> &amp; <a href="//html5blank.com" title="HTML5 Blank">HTML5 Blank</a>.
+					&copy; <?php echo date('Y'); ?> Copyright <?php bloginfo('name'); ?>.</br>
+					Design and Development by <a href="http://www.thejameswilliam.com" title="Designer">James W. Johnson</a>.
 				</p>
 				<!-- /copyright -->
 
@@ -14,7 +14,7 @@
 		<?php wp_footer(); ?>
 
 		<!-- analytics -->
-	
+
 
 	</body>
 </html>

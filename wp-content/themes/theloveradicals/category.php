@@ -8,11 +8,11 @@
 				<div class=" col-md-12 page">
 					<div class="col-md-8 col-md-offset-2 row">
 						<div class="post_info">
-							<h1><?php _e( 'Categories for ', 'html5blank' ); single_cat_title(); ?></h1>
+							<h1><?php single_cat_title(); ?></h1>
 						</div>
 					</div>
 
-					<section class="col-md-8 col-md-offset-2 row">
+					<section class="col-md-12 row">
 						<?php get_template_part('/inc/loop'); ?>
 					</section>
 

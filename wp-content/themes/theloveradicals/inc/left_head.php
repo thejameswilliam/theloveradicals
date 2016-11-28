@@ -1,4 +1,4 @@
-<div class="row col-md-5 left-head">
+<div class="row col-md-5 col-xs-12 left-head">
   <div class="featured-images">
     <?php love_imageshowcase(); ?>
   </div>

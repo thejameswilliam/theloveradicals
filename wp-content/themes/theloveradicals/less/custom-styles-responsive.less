@@ -34,17 +34,66 @@
 	.text-right-xs {
 		text-align: right;
 	}
+	.left-head {
+		position: relative;
+		img {
+			height: 100%;
+			width: auto;
+		}
+		.branding {
+			h1 {
+				font-size: 3em;
+			}
+		}
+	}
+	article.story {
+			margin-top: 0;
+	}
+	.love_stories {
+		.post_info {
+		h2 {font-size: 1.1em;}
+		.date, .author {font-size: .8em;}
+		}
+	}
 }
+
 
 // Small styles - default: 480px <= x <= 991px
 @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
-
+	.left-head {
+		position: fixed;
+		img {
+			height: auto;
+			width: 100%;
+		}
+		.branding {
+			h1 {
+				font-size: 3.5em;
+			}
+		}
+	}
+	article.story {
+			margin-top: 30px;
+	}
+	.love_stories {
+		.post_info {
+		h2 {font-size: 4em;}
+		.date, .author {font-size: 1em;}
+		}
+	}
 }
 
 // Medium styles - default: 992px <= x <= 1199px
 @media (min-width: @screen-md) and (max-width: @screen-md-max) {
 	#main {
 		min-height: 250px;
+	}
+	.left-head {
+		.branding {
+			h1 {
+				font-size: 4em;
+			}
+		}
 	}
 }
 

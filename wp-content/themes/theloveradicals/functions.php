@@ -291,9 +291,9 @@ function html5blankcomments($comment, $args, $depth)
   <?php
 
     if($depth > 1) :
-     $com_classes = 'reply comment-body col-md-12 row';
+     $com_classes = 'reply comment-body col-xs-12';
     else:
-     $com_classes = 'comment-body col-md-12 row';
+     $com_classes = 'comment-body col-xs-12';
     endif;
   ?>
     <div id="div-comment-<?php comment_ID() ?>" class="<?php echo $com_classes; ?>">
@@ -302,10 +302,10 @@ function html5blankcomments($comment, $args, $depth)
       	<em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
       	<br />
       <?php endif; ?>
-      <div class="comment-author vcard col-md-2">
+      <div class="comment-author vcard col-md-2 col-xs-4">
       	<?php if ($args['avatar_size'] != 0) echo get_avatar( $comment ); ?>
     	</div>
-      <div class="comment-meta commentmetadata col-md-10">
+      <div class="comment-meta commentmetadata col-md-10 col-xs-8">
         <div class="comment-author pull-left">
           <?php printf(__('<cite class="fn">%s</cite>'), get_comment_author_link()) ?>
         </div>
@@ -314,7 +314,7 @@ function html5blankcomments($comment, $args, $depth)
         </div>
 
       </div>
-      <div class="comment-text col-md-10">
+      <div class="comment-text col-md-10 col-md-offset-2 col-xs-12">
         <?php comment_text() ?>
       </div>
 
@@ -385,7 +385,7 @@ if( have_rows('images', 'options') ):
       $image_url = get_sub_field('image', 'options');
       $image_args = array(
         'src' => $image_url,
-        'w'   => 700,
+        'w'   => 600,
         'h'   => 900,
         'q'   => 90,
       ); ?>

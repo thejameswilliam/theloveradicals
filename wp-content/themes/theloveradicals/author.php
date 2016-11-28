@@ -6,14 +6,8 @@
 			<!-- article -->
 			<article id="post-<?php the_ID(); ?>" <?php post_class('story row'); ?>>
 				<div class=" col-md-12 story_post">
-					<div class="col-md-8 col-md-offset-2 row">
-
-
-
-
-
-
-						<div class="post_info">
+					<div class="col-md-8 col-md-offset-2 col-xs-12">
+						<div class="post_info col-xs-10 col-xs-offset-1">
 							<?php
 								$image_url = get_field('featured_image');
 								$author_id = get_the_author_meta('ID');
@@ -29,7 +23,7 @@
 							<h1><?php echo 'Stories by ' . $author_name; ?></h1>
 						</div>
 
-						<div class="author_meta col-md-12 row">
+						<div class="author_meta col-md-12 col-xs-12">
 							<?php if ( get_field('bio', 'user_'.$author_id)) :
 								$image_url = get_field('photo', 'user_'.$author_id);
 								$image_args = array(
@@ -38,10 +32,10 @@
 									'h'   => 300,
 								);
 								?>
-								<div class="author_photo col-md-3">
+								<div class="author_photo col-md-3 col-xs-6 col-xs-offset-3">
 									<img src="<?php echo mapi_thumb($image_args); ?>" alt="<?php the_field('story_title'); ?>">
 								</div>
-								<div class="author_bio col-md-9">
+								<div class="author_bio col-md-9 col-xs-12">
 									<?php echo get_field('bio', 'user_'.$author_id); ?>
 								</div>
 								<hr />
@@ -68,8 +62,17 @@
 
 
 							<!-- article -->
-							<article id="post-<?php the_ID(); ?>" <?php post_class('love_stories story col-md-10 col-md-offset-1 row'); ?>>
-								<div class="col-md-8 post_info">
+							<article id="post-<?php the_ID(); ?>" <?php post_class('love_stories story col-md-10 col-md-offset-1 col-xs-12'); ?>>
+
+								<!-- post thumbnail -->
+								<div class="post_thumb col-md-3 col-md-push-9 col-sm-4 col-xs-4">
+									<a href="<?php the_permalink(); ?>">
+										<img src="<?php echo mapi_thumb($image_args); ?>" alt="<?php the_field('story_title'); ?>">
+									</a>
+								</div>
+
+								<!-- /post thumbnail -->
+								<div class="col-md-9 col-md-pull-3 col-sm-8 col-xs-8 post_info">
 									<!-- post title -->
 									<span class="date"><?php the_time('F j, Y'); ?></span>
 									<h2>
@@ -90,20 +93,13 @@
 								</div>
 
 
-								<!-- post thumbnail -->
-									<div class="post_thumb pull-right col-md-3">
-										<a href="<?php the_permalink(); ?>">
-											<img src="<?php echo mapi_thumb($image_args); ?>" alt="<?php the_field('story_title'); ?>">
-										</a>
-									</div>
-								<!-- /post thumbnail -->
 
 
 							</article>
 							<!-- /article -->
 
 						<?php endwhile; ?>
-
+						<?php get_template_part('/inc/pagination'); ?>
 
 
 
@@ -113,7 +109,6 @@
 			</article>
 			<!-- /article -->
 
-			<?php get_template_part('pagination'); ?>
 
 	</main>
 <?php get_footer(); ?>
