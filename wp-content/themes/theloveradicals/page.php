@@ -3,7 +3,7 @@
 	<main role="main container-fluid">
 		<?php get_template_part('/inc/post-header'); ?>
 	<!-- section -->
-	<section>
+	<section class=" col-md-12 col-xs-12">
 
 	<?php if (have_posts()): while (have_posts()) : the_post();
 	$image_url = the_post_thumbnail_url();
