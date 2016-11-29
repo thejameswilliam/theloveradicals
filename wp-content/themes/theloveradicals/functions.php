@@ -442,7 +442,7 @@ add_filter( 'posts_where', 'love_attachments_wpquery' );
 function love_attachments_wpquery( $where ){
 	global $current_user;
 
-	if( is_user_logged_in() ){
+	if( is_user_logged_in() && !current_user_can('manage_options')){
 		if( isset( $_POST['action'] ) ){
 			// library query
 			if( $_POST['action'] == 'query-attachments' ){
