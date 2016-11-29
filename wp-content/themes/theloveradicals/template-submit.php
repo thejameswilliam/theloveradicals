@@ -11,7 +11,7 @@ $story_form = array(
   ),
   'id' => 'new-story',
 	'field_groups' => array(41),
-	'return' => '%post_url%?updated=new',
+	'return' => '%post_url%&updated=new',
 	'submit_value' => __("Submit Story", 'acf'),
 );
 ?>
