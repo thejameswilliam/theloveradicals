@@ -61,7 +61,7 @@ get_header();
 							$author_image = get_field('photo', 'user_'. $author_id );
 							$pen_name_option = get_field('under_pen_name', 'user_'. $author_id );
 
-							if($pen_name_option == 'yes') :
+							if($pen_name_option == 'true') :
 								$author_name = get_field('pen_name', 'user_'. $author_id );
 							else :
 								$author_name = get_the_author_meta('display_name', $author_id);
