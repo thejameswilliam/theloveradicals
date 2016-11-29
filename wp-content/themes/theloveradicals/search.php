@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
 	<main role="main container-fluid">
+		<?php get_template_part('/inc/post-header'); ?>
 		<!-- section -->
 		<section class="col-md-8 col-md-offset-2 row">
 			<article class="story row">
@@ -14,7 +15,7 @@
 					</div>
 
 
-					<section class="col-md-8 col-md-offset-2 row">
+					<section class="col-md-12 row">
 						<?php get_template_part('/inc/loop'); ?>
 					</section>
 
