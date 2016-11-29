@@ -44,6 +44,7 @@
             $('.left-head').css('height', windowHeight);
             $('.featured-images').css('height', windowHeight);
             $('.slick-slider').css('height', windowHeight);
+						$('.main').css('height', windowHeight);
 	  };
 	  setSize();
 
