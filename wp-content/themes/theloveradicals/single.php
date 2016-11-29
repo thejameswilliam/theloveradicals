@@ -17,7 +17,12 @@ add_filter('acf/update_value', 'my_kses_post', 10, 1);
 acf_form_head();
 get_header();
 
-
+$networks = array(
+	'facebook',
+	'twitter',
+	'google-plus',
+	'email',
+);
 ?>
 
 	<main role="main container-fluid">
@@ -79,14 +84,7 @@ get_header();
 								?>
 						</div>
 						<div class="social_links col-md-8 col-md-offset-2 col-sm-6 col-xs-12">
-							<?php
-							$networks = array(
-								'facebook',
-								'twitter',
-								'google-plus',
-								'email',
-							);
-							mapi_social_links($networks); ?>
+							<?php mapi_social_links($networks); ?>
 						</div>
 					</div>
 				</div>

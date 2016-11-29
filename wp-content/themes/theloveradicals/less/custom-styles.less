@@ -266,18 +266,26 @@ a:hover {
 .mapi-social-link a{
   background: @dark!important;
 }
-.mapi-social-links {
-  text-align: center;
-  a.facebook, a.twitter, a.google-plus, a.email {
-    background: @dark!important;
-  }
-  a:hover {
-    color: #fff;
-    transform: scale(1.05);
-  }
+.social_links {
+  .mapi-social-links {
+    text-align: center;
+    .mapi-social-link {
+      -webkit-border-radius: 150px;
+      border-radius: 150px;
+      margin: 6px;
+    }
+    a.facebook, a.twitter, a.google-plus, a.email {
+      background: @red!important;
+    }
+    a:hover {
+      color: #fff;
+      transform: scale(1.05);
+    }
 
 
+  }
 }
+
 
 
 
