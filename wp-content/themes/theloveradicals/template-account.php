@@ -102,7 +102,7 @@ $story_args = array(
                       // The Loop
                       if ( $story_query->have_posts() ) {
 
-                      	echo '<div class="user_stories col-md-8 col-md-offset-2 row">';
+                      	echo '<div class="user_stories col-md-10 col-md-offset-1 row">';
                       	while ( $story_query->have_posts() ) {
                       		$story_query->the_post();
                           if(get_field('featured_image')) :
@@ -111,6 +111,7 @@ $story_args = array(
                             $author_id = get_the_author_meta('ID');
                             $image_url = get_field('photo', 'user_'. $author_id );
                           endif;
+                          $post_status = get_post_status();
                           $image_args = array(
                             'src'            => $image_url,
                             'w'              => 100,
@@ -119,15 +120,22 @@ $story_args = array(
                           ?>
                           <div class="row">
 
-                            <div class="col-md-3 feature-image">
+                            <div class="post_thumb col-md-3 col-sm-4 col-xs-4">
                               <a href="<?php the_permalink(); ?>">
                                 <img src="<?php echo mapi_thumb($image_args); ?>" alt="<?php the_field('story_title'); ?>">
                               </a>
                             </div>
 
-                            <div class="col-md-9">
-                                <h2><a href="<?php the_permalink(); ?>"><?php echo the_field('story_title'); ?></a></h2>
-                                <p><?php echo mapi_word_limit(get_field('story'), 55); ?>...</p>
+                            <div class="post_info col-md-9 col-sm-8 col-xs-8">
+                                <h2><a href="<?php the_permalink(); ?>"><?php echo the_field('story_title') . '(' . $post_status . ')'; ?></a></h2>
+                                <?php
+                                
+                                if($post_status == 'draft') : ?>
+                                  <div class="alert alert-info">This story is in review.</div>
+                                <?php elseif($post_status == 'published') : ?>
+                                  <div class="alert alert-success">This story has been publish.</div>
+                                <?php endif; ?>
+                                <p><?php echo mapi_word_limit(get_field('story'), 20); ?>...</p>
                             </div>
 
                           </div>
@@ -137,7 +145,7 @@ $story_args = array(
                       	/* Restore original Post Data */
                       	wp_reset_postdata();
                       } else {
-                      	echo 'You havent written your story yet.';
+                      	echo '<h4 align="center">You havent written your story yet.</h4>';
                       }
                      ?>
                 </div>

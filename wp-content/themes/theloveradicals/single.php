@@ -83,8 +83,6 @@ get_header();
 				<!-- /post title -->
 
 				<section class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-					<?php mapi_var_dump($status);?>
-
 					<? if($status == 'true') : ?>
 						<div class="alert alert-success" role="alert">
 							<strong>Well done!</strong> You successfully updated your story.
