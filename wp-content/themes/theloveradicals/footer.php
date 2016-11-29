@@ -3,13 +3,13 @@
 
                 <?php if(!is_home()) : ?>
                 <div class="footer_widgets col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-md-4 col-sm-6 col-xs-10 col-xs-offset-1">
                         <?php dynamic_sidebar( 'widget-col-1' ); ?>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-md-4 col-sm-6 col-xs-10 col-xs-offset-1">
                         <?php dynamic_sidebar( 'widget-col-2' ); ?>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-md-4 col-sm-6 col-xs-10 col-xs-offset-1">
                         <?php dynamic_sidebar( 'widget-col-3' ); ?>
                     </div>
 
