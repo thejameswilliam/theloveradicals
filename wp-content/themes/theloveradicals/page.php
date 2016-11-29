@@ -49,10 +49,6 @@
 
 		</article>
 		<!-- /article -->
-		<footer class="single_footer col-xs-12 col-md-12">
-
-		</footer>
-
 	<?php endwhile; endif; ?>
 
 	</section>
