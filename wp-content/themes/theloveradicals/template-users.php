@@ -18,7 +18,13 @@ $user_query = new WP_User_Query( $user_args );
 			<!-- article -->
 			<article id="post-<?php the_ID(); ?>" <?php post_class('story row'); ?>>
 						<div class="author_meta col-md-8 col-sm-10 col-xs-12 col-md-offset-2 col-sm-offset-1 col-xs-offset-0">
-							<?php
+              <div class="post_info">
+                <h1><?php the_title(); ?></h1>
+              </div>
+              <div class="col-xs-12">
+                <?php the_content(); ?>
+              </div>
+              <?php
               if (!empty( $user_query->results)) :
               foreach ( $user_query->results as $user ) :
 
@@ -42,14 +48,7 @@ $user_query = new WP_User_Query( $user_args );
   								);
                   ?>
 
-                  <div class="post_info">
-        						<h1><?php the_title(); ?></h1>
-        					</div>
                   <section class="col-xs-12">
-                    <div class="col-xs-12">
-                      <?php the_content(); ?>
-                    </div>
-
                     <div class="col-md-3 col-sm-3 col-xs-3">
       								<div class="author_photo col-md-12 col-sm-12 col-xs-12">
       									<a href="<?php echo $author_url; ?>">
