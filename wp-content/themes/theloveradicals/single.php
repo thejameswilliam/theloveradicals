@@ -89,7 +89,7 @@ get_header();
 						</div>
 					<?php elseif($status == 'new') : ?>
 						<div class="alert alert-success" role="alert">
-							<strong>Well done!</strong> You successfully updated your story.
+							<strong>Wonderful.</strong> Thank you for sharing your story. We'll let you know when we publish it. In the mean time, you can make changes below.
 						</div>
 					<?php endif; ?>
 				<?php
