@@ -86,7 +86,11 @@ get_header();
 					<?php endif; ?>
 				<?php
 
-					if (is_author(get_current_user_id()) || current_user_can('manage_options')) : ?>
+				if (is_user_logged_in() && $current_user->ID == $post->post_author)  {
+						echo 'You are the seller of this item!';
+					}
+
+					if ($current_user->ID == $post->post_author || current_user_can('manage_options')) : ?>
 						<ul  class="nav nav-tabs">
 								<li class="active"><a  href="#story" data-toggle="tab">My Story</a></li>
 								<li><a href="#edit" data-toggle="tab">Edit My Story</a></li>
@@ -105,7 +109,7 @@ get_header();
 							  </div>
 						</div>
 					<?php else : ?>
-						<?php the_content(); ?>
+						<?php the_field('story'); ?>
 
 					<?php endif; ?>
 				</section>
