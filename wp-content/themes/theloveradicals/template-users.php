@@ -25,7 +25,9 @@ $user_query = new WP_User_Query( $user_args );
                 <?php the_content(); ?>
               </div>
               <?php
-              if (!empty( $user_query->results)) :
+              if (!empty( $user_query->results)) : ?>
+              <section class="col-xs-12">
+              <?php
               foreach ( $user_query->results as $user ) :
 
                 $author_id = $user->id;
@@ -47,8 +49,6 @@ $user_query = new WP_User_Query( $user_args );
   									'h'   => 300,
   								);
                   ?>
-
-                  <section class="col-xs-12">
                     <div class="col-md-3 col-sm-3 col-xs-3">
       								<div class="author_photo col-md-12 col-sm-12 col-xs-12">
       									<a href="<?php echo $author_url; ?>">
@@ -59,11 +59,10 @@ $user_query = new WP_User_Query( $user_args );
       									<h4 align="center"><a href="<?php echo $author_url; ?>"><?php echo $author_name; ?></a></h4>
       								</div>
                     </div>
-                  </section>
-
   							<?php endif;
-              endforeach;
-            endif;
+              endforeach; ?>
+              </section>
+            <?php endif;
             ?>
 						</div>
 			</article>
