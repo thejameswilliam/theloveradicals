@@ -18,9 +18,6 @@ endif;
 			<article id="post-<?php the_ID(); ?>" <?php post_class('story row'); ?>>
 				<div class=" col-md-12 story_post">
 					<div class="col-md-8 col-md-offset-2 col-xs-12">
-						<div class="post_info col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-							<h1><?php echo 'Stories by ' . $author_name; ?></h1>
-						</div>
 
 						<div class="author_meta col-md-12 col-sm-12 col-xs-12">
 							<?php if ( get_field('bio', 'user_'.$author_id)) :
@@ -31,15 +28,20 @@ endif;
 									'h'   => 300,
 								);
 								?>
-								<div class="author_photo col-md-3 col-sm-12 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
+								<div class="author_photo col-md-4 col-sm-4 col-xs-6 col-md-offset-4 col-sm-offset-4 col-xs-offset-3">
 									<img src="<?php echo mapi_thumb($image_args); ?>" alt="<?php the_field('story_title'); ?>">
 								</div>
+								<div class="post_info col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+									<h1><?php echo $author_name; ?></h1>
+								</div>
+
 								<div class="author_bio col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
 									<?php echo get_field('bio', 'user_'.$author_id); ?>
 								</div>
-								<hr />
+
 							<?php endif; ?>
 						</div>
+
 
 						<?php  while (have_posts()) : the_post();
 
@@ -55,11 +57,6 @@ endif;
 							'h'              => 100,
 						);
 						?>
-
-
-
-
-
 							<!-- article -->
 							<article id="post-<?php the_ID(); ?>" <?php post_class('love_stories story col-md-10 col-md-offset-1 col-sm-12 col-xs-12'); ?>>
 
@@ -90,18 +87,11 @@ endif;
 									</span>
 									<!-- /post details -->
 								</div>
-
-
-
-
 							</article>
 							<!-- /article -->
 
 						<?php endwhile; ?>
 						<?php get_template_part('/inc/pagination'); ?>
-
-
-
 
 					</div>
 				</div>
