@@ -1,5 +1,5 @@
 			<!-- footer -->
-			<footer class="footer" role="contentinfo">
+			<footer class="footer fluid-container row" role="contentinfo">
 
                 <?php if(!is_home()) : ?>
                 <div class="footer_widgets col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
