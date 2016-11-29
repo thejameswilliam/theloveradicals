@@ -11,7 +11,7 @@
       <div class="right-tip">My Account</div>
     </a>
     <?php endif; ?>
-    <span class="hidden-sm"><?php if(!is_home()) : the_field('story_title'); endif; ?></span>
+    <span class="hidden-sm hidden-xs"><?php if(!is_home()) : the_field('story_title'); endif; ?></span>
   </div>
   <button type="button" class="navbar-toggle menu_toggle pull-right collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
     <span class="sr-only">Toggle navigation</span>
