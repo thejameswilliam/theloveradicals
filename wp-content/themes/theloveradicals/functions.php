@@ -32,9 +32,24 @@ if (function_exists('add_theme_support'))
     add_image_size('small', 120, '', true); // Small Thumbnail
     add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
-    // Remove Admin bypostauthor
-    //show_admin_bar(false);
 
+
+    // Remove Admin
+    add_action('after_setup_theme', 'love_remove_admin_bar');
+    function love_remove_admin_bar() {
+      if (!current_user_can('manage_options') && !is_admin()) {
+        show_admin_bar(false);
+      }
+    }
+
+    add_action( 'init', 'love_blockusers_init' );
+    function love_blockusers_init() {
+      if ( is_admin() && !current_user_can( 'manage_options' ) &&
+        !( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+          wp_redirect( home_url() );
+          exit;
+        }
+    }
 
 
     // Enables post and comment RSS feed links to head
