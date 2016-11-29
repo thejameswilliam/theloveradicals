@@ -127,13 +127,13 @@ $story_args = array(
                             </div>
 
                             <div class="post_info col-md-9 col-sm-8 col-xs-8">
-                                <h2><a href="<?php the_permalink(); ?>"><?php echo the_field('story_title') . '(' . $post_status . ')'; ?></a></h2>
+                                <h2><a href="<?php the_permalink(); ?>"><?php echo the_field('story_title'); ?></a></h2>
                                 <?php
-                                
+
                                 if($post_status == 'draft') : ?>
                                   <div class="alert alert-info">This story is in review.</div>
-                                <?php elseif($post_status == 'published') : ?>
-                                  <div class="alert alert-success">This story has been publish.</div>
+                                <?php elseif($post_status == 'publish') : ?>
+                                  <div class="alert alert-success">This story has been published.</div>
                                 <?php endif; ?>
                                 <p><?php echo mapi_word_limit(get_field('story'), 20); ?>...</p>
                             </div>
