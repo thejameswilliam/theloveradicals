@@ -85,11 +85,6 @@ get_header();
 						</div>
 					<?php endif; ?>
 				<?php
-
-				if (is_user_logged_in() && $current_user->ID == $post->post_author)  {
-						echo 'You are the seller of this item!';
-					}
-
 					if ($current_user->ID == $post->post_author || current_user_can('manage_options')) : ?>
 						<ul  class="nav nav-tabs">
 								<li class="active"><a  href="#story" data-toggle="tab">My Story</a></li>
