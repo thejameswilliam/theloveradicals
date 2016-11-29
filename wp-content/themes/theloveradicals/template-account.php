@@ -70,7 +70,7 @@ $story_args = array(
             </div>
           <?php elseif($status == 'new_user') : ?>
             <div class="alert alert-info" role="alert">
-              <strong>Welcome <?php echo $new_user_name; ?>,</strong> Login below to get started.
+              <strong>Welcome <?php echo $new_user_name; ?>.</strong> Login below to get started.
             </div>
           <?php elseif($status != 'new_user' && !is_user_logged_in()) : ?>
           <div class="alert alert-info" role="alert">

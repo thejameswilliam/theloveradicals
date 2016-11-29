@@ -1,5 +1,9 @@
 <?php
-if(isset($_GET['updated'])) : $status = 'updated'; else : $status = 'viewed'; endif;
+if(isset($_GET['updated'])) :
+		$status = $_GET['updated'];
+else :
+$status = 'viewed';
+endif;
 function my_kses_post( $value ) {
 	// is array
 	if( is_array($value) ) {
@@ -79,7 +83,11 @@ get_header();
 				<!-- /post title -->
 
 				<section class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-					<? if($status == 'updated') : ?>
+					<? if($status == 'true') : ?>
+						<div class="alert alert-success" role="alert">
+							<strong>Well done!</strong> You successfully updated your story.
+						</div>
+					<?php elseif($status == 'new') : ?>
 						<div class="alert alert-success" role="alert">
 							<strong>Well done!</strong> You successfully updated your story.
 						</div>
