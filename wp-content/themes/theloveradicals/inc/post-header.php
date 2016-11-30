@@ -1,6 +1,6 @@
 <div class="fade-scroll single_header col-md-12 col-sm-12 col-xs-12 row">
 
-  <div class="single_title col-md-3 col-xs-3">
+  <div class="single_title col-md-6 col-xs-8">
     <a href="<?php echo site_url()?>">
       <i class="fa fa-home nav-icon" aria-hidden="true"></i>
       <div class="right-tip">Home</div>
@@ -17,7 +17,7 @@
     <span class="sr-only">Toggle navigation</span>
     <i class="fa fa-bars" aria-hidden="true"></i>
   </button>
-  <div role="navigation" id="navbar-collapse" class="single_navigation collapse pull-right navbar-collapse col-md-6 col-xs-6">
+  <div role="navigation" id="navbar-collapse" class="single_navigation collapse pull-right navbar-collapse col-md-6 col-xs-12">
 
       <?php
         wp_nav_menu( array(

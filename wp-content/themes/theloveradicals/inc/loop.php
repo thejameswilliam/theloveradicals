@@ -24,17 +24,17 @@ endif;
 ?>
 
 	<!-- article -->
-	<article id="post-<?php the_ID(); ?>" <?php post_class('love_stories col-md-10 col-xs-12 col-sm-12 col-md-offset-1 row'); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class('love_stories col-md-8 col-sm-10 col-xs-12 col-md-offset-2 col-sm-offset-1'); ?>>
 
 		<!-- post thumbnail -->
-		<div class="post_thumb col-md-3 col-md-push-9 col-sm-4 col-xs-4">
+		<div class="post_thumb col-md-4 col-md-push-8 col-sm-4 col-xs-4">
 			<a href="<?php the_permalink(); ?>">
 				<img src="<?php echo mapi_thumb($image_args); ?>" alt="<?php the_field('story_title'); ?>">
 			</a>
 		</div>
 		<!-- /post thumbnail -->
 
-		<div class="col-md-9 col-md-pull-3 col-sm-8 col-xs-8 post_info">
+		<div class="col-md-8 col-md-pull-4 col-sm-8 col-xs-8 post_info">
 			<!-- post title -->
 			<span class="date"><?php the_time('F j, Y'); ?></span>
 			<h2>
