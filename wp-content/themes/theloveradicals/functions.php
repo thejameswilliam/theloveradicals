@@ -42,21 +42,20 @@ if (function_exists('add_theme_support'))
       }
     }
 
-    add_action( 'init', 'love_blockusers_init' );
-    function love_blockusers_init() {
-      if ( is_admin() && !current_user_can( 'manage_options' ) &&
-        !( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
-          wp_redirect( home_url() );
-          exit;
-        }
-    }
-
 
     // Enables post and comment RSS feed links to head
     add_theme_support('automatic-feed-links');
 
     // Localisation Support
     load_theme_textdomain('html5blank', get_template_directory() . '/languages');
+}
+
+add_action( 'init', 'love_blockusers_init' );
+function love_blockusers_init() {
+  if ( is_admin() && !current_user_can('manage_options') :
+      wp_redirect( home_url() );
+      exit;
+    endif;
 }
 
 /*------------------------------------*\
