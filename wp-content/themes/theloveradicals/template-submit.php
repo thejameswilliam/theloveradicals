@@ -28,7 +28,7 @@ $story_form = array(
 		<article id="post-<?php the_ID(); ?>" <?php post_class('story row'); ?>>
 			<div class=" col-md-12 story_post">
 				<!-- post title -->
-				<div class="col-md-8 col-sm-10 col-xs-10 col-md-offset-2 col-md-offset-1 col-md-offset-1 row">
+				<div class="col-md-8 col-sm-10 col-xs-10 col-md-offset-2 col-sm-offset-1 col-xs-offset-1 row">
 					<div class="post_info">
 						<h1><?php the_title(); ?></h1>
 					</div>
