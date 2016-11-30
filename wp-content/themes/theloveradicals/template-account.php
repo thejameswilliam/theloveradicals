@@ -53,18 +53,16 @@ $story_args = array(
 		<article id="post-<?php the_ID(); ?>" <?php post_class('story row'); ?>>
 			<div class=" col-md-12 story_post">
 				<!-- post title -->
-				<div class="col-md-8 col-md-offset-2 row">
+				<div class="col-md-8 col-sm-10 col-xs-10 col-md-offset-2 col-md-offset-1 col-md-offset-1 row">
 					<div class="post_info">
 						<h1><?php the_title(); ?></h1>
 					</div>
 				</div>
 				<!-- /post title -->
 
-				<section class="col-md-8 col-md-offset-2 row">
+				<section class="col-md-8 col-sm-10 col-xs-10 col-md-offset-2 col-sm-offset-1 col-xs-offset-1 row">
 
-          <?
-
-          if($status == 'true') : ?>
+          <? if($status == 'true') : ?>
             <div class="alert alert-success" role="alert">
               <strong>Awesome!</strong> You successfully updated your profile.
             </div>
@@ -77,10 +75,6 @@ $story_args = array(
             <strong>Whoops.</strong> Please login to edit your account.
           </div>
           <?php endif; ?>
-
-
-
-
 				<?php
 					if (is_user_logged_in() || current_user_can('manage_options')) : ?>
 
@@ -120,13 +114,13 @@ $story_args = array(
                           ?>
                           <div class="row">
 
-                            <div class="post_thumb col-md-3 col-sm-4 col-xs-4">
+                            <div class="post_thumb col-md-3 col-sm-12 col-xs-12">
                               <a href="<?php the_permalink(); ?>">
                                 <img src="<?php echo mapi_thumb($image_args); ?>" alt="<?php the_field('story_title'); ?>">
                               </a>
                             </div>
 
-                            <div class="post_info col-md-9 col-sm-8 col-xs-8">
+                            <div class="post_info col-md-9 col-sm-12 col-xs-12">
                                 <h2><a href="<?php the_permalink(); ?>"><?php echo the_field('story_title'); ?></a></h2>
                                 <?php
 

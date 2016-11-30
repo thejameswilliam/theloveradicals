@@ -1,4 +1,4 @@
-<div class="fade-scroll single_header col-md-12">
+<div class="fade-scroll single_header col-md-12 col-sm-12 col-xs-12 row">
 
   <div class="single_title col-md-3 col-xs-3">
     <a href="<?php echo site_url()?>">

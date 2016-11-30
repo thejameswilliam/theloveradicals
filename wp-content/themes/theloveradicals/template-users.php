@@ -26,7 +26,7 @@ $user_query = new WP_User_Query( $user_args );
               </div>
               <?php
               if (!empty( $user_query->results)) : ?>
-              <section class="col-xs-12">
+              <section class="col-md-12 col-sm-12 col-xs-12 row">
               <?php
               foreach ( $user_query->results as $user ) :
 
