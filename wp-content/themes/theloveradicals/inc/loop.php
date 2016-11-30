@@ -24,7 +24,7 @@ endif;
 ?>
 
 	<!-- article -->
-	<article id="post-<?php the_ID(); ?>" <?php post_class('love_stories col-md-8 col-sm-10 col-xs-12 col-md-offset-2 col-sm-offset-1'); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class('love_stories col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1'); ?>>
 
 		<!-- post thumbnail -->
 		<div class="post_thumb col-md-4 col-md-push-8 col-sm-4 col-xs-4">

@@ -6,7 +6,7 @@
 		<?php get_template_part('/inc/left_head'); ?>
 
 
-		<section class="col-md-7 pull-right love_stories">
+		<section class="col-md-7 col-sm-12 col-xs-12 pull-right love_stories">
 			<h1><?php _e( 'Our Stories', 'html5blank' ); ?></h1>
 			<?php get_template_part('/inc/loop'); ?>
 

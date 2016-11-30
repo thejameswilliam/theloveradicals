@@ -1,6 +1,6 @@
-<div class="fade-scroll single_header col-md-12 col-sm-12 col-xs-12 row">
+<div class="fade-scroll single_header row">
 
-  <div class="single_title col-md-6 col-xs-8">
+  <div class="single_title col-md-4 col-xs-4">
     <a href="<?php echo site_url()?>">
       <i class="fa fa-home nav-icon" aria-hidden="true"></i>
       <div class="right-tip">Home</div>
