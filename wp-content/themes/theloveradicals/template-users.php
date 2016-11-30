@@ -49,7 +49,7 @@ $user_query = new WP_User_Query( $user_args );
   									'h'   => 300,
   								);
                   ?>
-                    <div class="col-md-3 col-sm-3 col-xs-3">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
       								<div class="author_photo col-md-12 col-sm-12 col-xs-12">
       									<a href="<?php echo $author_url; ?>">
                           <img src="<?php echo mapi_thumb($image_args); ?>" alt="<?php the_field('story_title'); ?>">

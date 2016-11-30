@@ -55,11 +55,6 @@ $story_form = array(
 
 		</article>
 		<!-- /article -->
-		<footer class="single_footer row">
-			<div class="col-md-8 col-md-offset-2">
-				<?php comments_template(); ?>
-			</div>
-		</footer>
 
 	<?php endwhile; endif; ?>
 

@@ -1,7 +1,7 @@
 <?php get_header();
 ?>
 <div class="wrapper">
-	<main role="main" class="row col-md-12 container-fluid">
+	<main role="main" class="row col-md-12 col-sm-12 col-xs-12 container-fluid">
 		<?php get_template_part('/inc/post-header'); ?>
 		<?php get_template_part('/inc/left_head'); ?>
 

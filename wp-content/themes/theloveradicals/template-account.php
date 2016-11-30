@@ -156,9 +156,6 @@ $story_args = array(
 
 		</article>
 		<!-- /article -->
-		<footer class="single_footer row">
-
-		</footer>
 
 	<?php endwhile; endif; ?>
 
