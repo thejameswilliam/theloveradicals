@@ -52,7 +52,7 @@ if (function_exists('add_theme_support'))
 
 add_action( 'init', 'love_blockusers_init' );
 function love_blockusers_init() {
-  if ( is_admin() && !current_user_can('manage_options') :
+  if ( is_admin() && !current_user_can('manage_options')) :
       wp_redirect( home_url() );
       exit;
     endif;
