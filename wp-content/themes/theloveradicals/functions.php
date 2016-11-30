@@ -50,13 +50,6 @@ if (function_exists('add_theme_support'))
     load_theme_textdomain('html5blank', get_template_directory() . '/languages');
 }
 
-add_action( 'init', 'love_blockusers_init' );
-function love_blockusers_init() {
-  if ( is_admin() && !current_user_can('manage_options')) :
-      wp_redirect( home_url() );
-      exit;
-    endif;
-}
 
 /*------------------------------------*\
 	Functions
