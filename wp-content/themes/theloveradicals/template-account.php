@@ -128,7 +128,7 @@ $story_args = array(
                                 <?php elseif($post_status == 'publish') : ?>
                                   <div class="alert alert-success">This story has been published.</div>
                                 <?php endif; ?>
-                                <span class="story_excerpt"><?php echo strip_tags(mapi_word_limit(get_field('story'), 20)); ?>...</span>
+                                <span class="story_excerpt"><?php echo mapi_word_limit(strip_tags(get_field('story'), 20)); ?>...</span>
                             </div>
 
                           </div>
