@@ -19,7 +19,7 @@
 				<!-- copyright -->
 				<div class="copyright col-md-12 col-sm-12 col-xs-12">
 					&copy; <?php echo date('Y'); ?> Copyright <?php bloginfo('name'); ?>.</br>
-					Design and Development by <a href="http://www.thejameswilliam.com" title="Designer">James W. Johnson</a>.
+					Design and Development by <a href="https://www.thejameswilliam.com" title="Designer">James W. Johnson</a>.
 				</div>
 				<!-- /copyright -->
                 <?php endif; ?>
