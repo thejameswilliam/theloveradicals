@@ -244,7 +244,23 @@ class GF_Field_FileUpload extends GF_Field {
 			$preview .= sprintf( "<div id='preview_existing_files_%d'>", $id );
 
 			foreach ( $file_urls as $file_index => $file_url ) {
-				if ( GFCommon::is_ssl() && strpos( $file_url, 'http:' ) !== false ) {
+
+				/**
+				 * Allow for override of SSL replacement.
+				 *
+				 * By default Gravity Forms will attempt to determine if the schema of the URL should be overwritten for SSL.
+				 * This is not ideal for all situations, particularly domain mapping. Setting $field_ssl to false will prevent
+				 * the override.
+				 *
+				 * @since 2.1.1.23
+				 *
+				 * @param bool                $field_ssl True to allow override if needed or false if not.
+				 * @param string              $file_url  The file URL in question.
+				 * @param GF_Field_FileUpload $field     The field object for further context.
+				 */
+				$field_ssl = apply_filters( 'gform_secure_file_download_is_https', true, $file_url, $this );
+
+				if ( GFCommon::is_ssl() && strpos( $file_url, 'http:' ) !== false && $field_ssl === true ) {
 					$file_url = str_replace( 'http:', 'https:', $file_url );
 				}
 				$download_file_text  = esc_attr__( 'Download file', 'gravityforms' );
@@ -437,10 +453,35 @@ class GF_Field_FileUpload extends GF_Field {
 				foreach ( $file_paths as $file_path ) {
 					$info = pathinfo( $file_path );
 					$file_path = $this->get_download_url( $file_path, $force_download );
-					if ( GFCommon::is_ssl() && strpos( $file_path, 'http:' ) !== false ) {
+
+					/**
+					 * Allow for override of SSL replacement
+					 *
+					 * By default Gravity Forms will attempt to determine if the schema of the URL should be overwritten for SSL.
+					 * This is not ideal for all situations, particularly domain mapping. Setting $field_ssl to false will prevent
+					 * the override.
+					 *
+					 * @since 2.1.1.23
+					 *
+					 * @param bool                $field_ssl True to allow override if needed or false if not.
+					 * @param string              $file_path The file path of the download file.
+					 * @param GF_Field_FileUpload $field     The field object for further context.
+					 */
+					$field_ssl = apply_filters( 'gform_secure_file_download_is_https', true, $file_path, $this );
+
+					if ( GFCommon::is_ssl() && strpos( $file_path, 'http:' ) !== false && $field_ssl === true ) {
 						$file_path = str_replace( 'http:', 'https:', $file_path );
 					}
-					$file_path          = esc_attr( str_replace( ' ', '%20', $file_path ) );
+
+					/**
+					 * Allows for the filtering of the file path before output.
+					 *
+					 * @since 2.1.1.23
+					 *
+					 * @param string              $file_path The file path of the download file.
+					 * @param GF_Field_FileUpload $field     The field object for further context.
+					 */
+					$file_path          = esc_attr( str_replace( ' ', '%20', apply_filters( 'gform_fileupload_entry_value_file_path', $file_path, $this ) ) );
 					$base_name          = $info['basename'];
 					$click_to_view_text = esc_attr__( 'Click to view', 'gravityforms' );
 					$output_arr[]       = $format == 'text' ? $file_path . PHP_EOL : "<li><a href='{$file_path}' target='_blank' title='{$click_to_view_text}'>{$base_name}</a></li>";
@@ -560,10 +601,11 @@ class GF_Field_FileUpload extends GF_Field {
 	/**
 	 * Returns the download URL for a file. The URL is not escaped for output.
 	 *
-	 * @since 2.0
+	 * @since  2.0
+	 * @access public
 	 *
-	 * @param string $file The complete file URL.
-	 * @param bool $force_download Default: false
+	 * @param string $file           The complete file URL.
+	 * @param bool   $force_download If the download should be forced. Defaults to false.
 	 *
 	 * @return string
 	 */
@@ -573,7 +615,8 @@ class GF_Field_FileUpload extends GF_Field {
 		$secure_download_location = true;
 
 		/**
-		 * By default the real location of the uploaded file will be hidden and the download URL will be generated with a security token to prevent guessing or enumeration attacks to discover the location of other files.
+		 * By default the real location of the uploaded file will be hidden and the download URL will be generated with
+		 * a security token to prevent guessing or enumeration attacks to discover the location of other files.
 		 *
 		 * Return FALSE to display the real location.
 		 *

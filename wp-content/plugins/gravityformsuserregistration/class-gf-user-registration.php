@@ -945,7 +945,8 @@ class GF_User_Registration extends GFFeedAddOn {
 
 				if ( $bp_field->type == 'datebox' && $value ) {
 					$gf_field = GFFormsModel::get_field( $form, $gf_field_id );
-					$value    = GFCommon::date_display( call_user_func( 'array_shift', explode( ' ', $value ) ), 'ymd_dash', $gf_field->dateFormat ? $gf_field->dateFormat : 'mdy' );
+					$value    = explode( ' ', $value );
+					$value    = GFCommon::date_display( array_shift( $value ), 'ymd_dash', $gf_field->dateFormat ? $gf_field->dateFormat : 'mdy' );
 				}
 
 				if ( ! empty( $value ) ) {
@@ -1558,6 +1559,12 @@ class GF_User_Registration extends GFFeedAddOn {
 	}
 
 	public function insert_buddypress_data( $bp_data ) {
+		if ( empty( $bp_data ) ) {
+			$this->log( 'aborting; no mapped fields.' );
+
+			return;
+		}
+
 		global $wpdb, $bp;
 
 		if ( ! function_exists( 'xprofile_set_field_data' ) ) {
@@ -1567,6 +1574,7 @@ class GF_User_Registration extends GFFeedAddOn {
 		foreach ( $bp_data as $item ) {
 			$success = xprofile_set_field_data( $item['field_id'], $item['user_id'], $item['value'] );
 			xprofile_set_field_visibility_level( $item['field_id'], $item['user_id'], $item['field']->default_visibility );
+			$this->log( sprintf( 'BP field: %s; Result: %s', $item['field_id'], var_export( (bool) $success, 1 ) ) );
 		}
 
 	}
@@ -1632,6 +1640,8 @@ class GF_User_Registration extends GFFeedAddOn {
 			} else {
 				$meta_value = $this->get_meta_value( $bp_field_id, $meta, $form, $entry );
 			}
+
+			$this->log( sprintf( 'BP field: %s; GF field: %s; value: %s', $bp_field_id, $gf_field_id, print_r( $meta_value, 1 ) ) );
 
 			$item['value']       = $meta_value;
 			$item['last_update'] = date( 'Y-m-d H:i:s' );
@@ -1773,9 +1783,8 @@ class GF_User_Registration extends GFFeedAddOn {
 			/* Prepare the logged in message. */
 			if ( rgblank( $logged_in_message ) ) {
 				$logged_in_message = sprintf(
-					esc_html__( 'You are currently logged in as %2$s%1$s%2$s. %4$sLog out?%5$s', 'gravityformsuserregistration' ),
-					$current_user->display_name,
-					'<strong>', '</strong>',
+					esc_html__( 'You are currently logged in as %s%s%s. %sLog out?%s', 'gravityformsuserregistration' ),
+					'<strong>', $current_user->display_name, '</strong>',
 					'<a href="' . wp_logout_url( $logout_redirect ) . '">', '</a>'
 				);
 			} else {
@@ -1858,7 +1867,7 @@ class GF_User_Registration extends GFFeedAddOn {
 		/* Open Gravity Form wrapper and form tag. */
 		$html  = "<div class='{$wrapper_css_class}' id='gform_wrapper_{$form['id']}'>";
 		$html .= "<form method='post' id='gform_{$form['id']}'>";
-		$html .= "<input type='hidden' name='login_redirect' value='" . $login_redirect . "' />";
+		$html .= "<input type='hidden' name='login_redirect' value='" . esc_attr( sanitize_text_field( $login_redirect ) ) . "' />";
 		
 		// Convert display title and description to boolean valudes.
 		$display_title       = filter_var( $display_title, FILTER_VALIDATE_BOOLEAN );
@@ -2511,7 +2520,7 @@ class GF_User_Registration extends GFFeedAddOn {
 						'type'      => 'checkbox',
 						'choices'   => array(
 							array(
-								'label' => esc_html__( 'Create new site when a user register.', 'gravityformsuserregistration' ),
+								'label' => esc_html__( 'Create new site when a user registers.', 'gravityformsuserregistration' ),
 								'name'  => 'createSite',
 								'value' => 1,
 								'onclick' => 'jQuery( this ).parents( "form" ).attr( "action", "#gaddon-setting-row-createSite" ).submit();'
@@ -3684,6 +3693,22 @@ class GF_User_Registration extends GFFeedAddOn {
 		return rgar( $entry, $field_id );
 	}
 
+	/**
+	 * Format the number field value according to the format selected on the field.
+	 *
+	 * @since 3.5.5
+	 *
+	 * @param array           $entry    The Entry currently being processed.
+	 * @param string          $field_id The ID of the Field currently being processed.
+	 * @param GF_Field_Number $field    The Field currently being processed.
+	 *
+	 * @return string
+	 */
+	public function get_number_field_value( $entry, $field_id, $field ) {
+
+		return $field->get_value_entry_detail( rgar( $entry, $field_id ), rgar( $entry, 'currency' ) );
+	}
+
 	public static function maybe_get_category_name( $field, $entry_value ) {
 
 		if ( is_object( $field ) && $field->type == 'post_category' ) {
@@ -3751,8 +3776,8 @@ class GF_User_Registration extends GFFeedAddOn {
 			?>
 			<script type="text/javascript">
 				if (window.gform)
-					gform.addFilter('gform_merge_tags', 'add_merge_tags');
-				function add_merge_tags(mergeTags, elementId, hideAllFields, excludeFieldTypes, isPrepop, option) {
+					gform.addFilter('gform_merge_tags', 'gf_user_registration_merge_tags');
+				function gf_user_registration_merge_tags(mergeTags, elementId, hideAllFields, excludeFieldTypes, isPrepop, option) {
 					mergeTags['other'].tags.push({
 						tag: '{activation_url}',
 						label: '<?php esc_html_e( 'User Activation URL', 'gravityformsuserregistration' ) ?>'

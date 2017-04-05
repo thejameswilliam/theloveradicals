@@ -1,6 +1,6 @@
 <?php
 //###WPM-CACHE-PATH-BEFORE###
-$min_cachePath = "/Users/jameswjohnson/Dropbox/Sites/jwj_loveradicals/wp-content/uploads/minify-cache";
+$min_cachePath = "/home/mindsharedev/dev.mindsharelabs.com/wp-content/uploads/minify-cache";
 //###WPM-CACHE-PATH-AFTER###
 
 //###WPM-CACHE-AGE-BEFORE###
