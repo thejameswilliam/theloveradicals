@@ -1,0 +1,15 @@
+
+# robots.txt created automatically by Mindshare Security
+# https://mind.sh/are/
+
+Sitemap: https://theloveradicals.com/sitemap.xml
+
+User-agent: *
+
+Disallow: /tmp/
+Disallow: /feed/
+Disallow: /trackback/
+Disallow: /cgi-bin/
+Disallow: /wp-content/uploads/
+Disallow: /wp-content/themes/
+Disallow: /wp-content/plugins/
