@@ -11,11 +11,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="<?php echo get_bloginfo('description'); ?>">
-		<meta property="og:url" content="<?php echo get_bloginfo('url'); ?>">
 		<meta property="og:site_name" content="<?php get_bloginfo('name'); ?>">
 
 		<meta name="twitter:card" content="summary_large_image">
-			<meta name="twitter:site" content="@theloveradicals">
+		<meta name="twitter:site" content="@theloveradicals">
 		<meta name="twitter:title" content="<?php get_bloginfo('name'); ?>">
 		<meta name="twitter:description" content="<?php echo get_bloginfo('description'); ?>">
 		<meta name="twitter:image" content="https://theloveradicals.com/wp-content/uploads/2016/11/jgoldcrown-heart-graffiti.jpg">
