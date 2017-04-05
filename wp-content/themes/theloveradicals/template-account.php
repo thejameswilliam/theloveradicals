@@ -94,10 +94,9 @@ $story_args = array(
                       $story_query = new WP_Query( $story_args );
 
                       // The Loop
-                      if ( $story_query->have_posts() ) {
-
+                      if ( $story_query->have_posts() ) :
                       	echo '<div class="user_stories col-md-10 col-md-offset-1 row">';
-                      	while ( $story_query->have_posts() ) {
+                      	while ( $story_query->have_posts() ) :
                       		$story_query->the_post();
                           if(get_field('featured_image')) :
                             $image_url = get_field('featured_image');
@@ -129,18 +128,18 @@ $story_args = array(
                                 <?php elseif($post_status == 'publish') : ?>
                                   <div class="alert alert-success">This story has been published.</div>
                                 <?php endif; ?>
-                                <span class="story_excerpt"><?php echo mapi_word_limit(get_field('story'), 20); ?>...</span>
+                                <span class="story_excerpt"><?php echo strip_tags(mapi_word_limit(get_field('story'), 20)); ?>...</span>
                             </div>
 
                           </div>
                           <hr />
-                        <?php }
-                      	echo '</div>';
+                        <?php
+
                       	/* Restore original Post Data */
                       	wp_reset_postdata();
-                      } else {
-                      	echo '<h4 align="center">You havent written your story yet.</h4>';
-                      }
+                      endwhile;
+echo '</div>';
+                    endif;
                      ?>
                 </div>
             </div>

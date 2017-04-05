@@ -317,7 +317,7 @@ function html5blankcomments($comment, $args, $depth)
         </div>
 
       </div>
-      <div class="comment-text col-md-10 col-md-offset-2 col-xs-12">
+      <div class="comment-text col-md-10 col-xs-12">
         <?php comment_text() ?>
       </div>
 
